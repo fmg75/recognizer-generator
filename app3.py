@@ -65,7 +65,8 @@ def send_petition(filename):
     repo_owner = "fmg75"
     repo_name = "recognizer-generator"
     branch = "master"
-    access_token = "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"
+    access_token = "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"
+    # personal_access_token = "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"
     filename_ = filename
     # Leer el archivo y convertirlo a bytes
     with open(filename_, "rb") as f:
@@ -84,6 +85,11 @@ def send_petition(filename):
         "Authorization": f"Bearer {access_token}",
         "Content-Type": "application/json",
     }
+
+    # headers = {
+    #     "Authorization": f"Bearer {personal_access_token}",
+    #     "accept": "application/vnd.github+json",
+    # }
 
     # C
 
