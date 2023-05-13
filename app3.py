@@ -18,7 +18,7 @@ def send_petition(caracteristicas):
 
     file_contents = pickle.dumps(caracteristicas)
 
-    # Configurar la URL de la API de GitHub
+    #  Configurar la URL de la API de GitHub
     api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/caracteristicas_{unique_id}.pkl"
 
     # Configurar los headers de la petición
