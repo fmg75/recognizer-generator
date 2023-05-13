@@ -10,22 +10,19 @@ import base64
 
 
 # Generar un ID único utilizando uuid
-unique_id = str(uuid.uuid4())
+unique_id = str(uuid.uuid4())[:8]
 
 
-def extract_embeddings(data_dir, save_dir):
+def extract_embeddings(data_dir):
     # Cargar el modelo de reconocimiento facial y el detector de caras
     model = InceptionResnetV1(pretrained="vggface2").eval()
     mtcnn = MTCNN(min_face_size=50, keep_all=False)
 
-    # inicio = 0
-    # fin = 1000
     embeddings_list = []
     labels = []
-    no_process_dir = os.path.join(save_dir, "no_process")
+    no_process_dir = os.path.join(data_dir, "no_process")
     os.makedirs(no_process_dir, exist_ok=True)
 
-    # img_files = os.listdir(data_dir)[inicio:fin]
     img_files = os.listdir(data_dir)
     for img_file in img_files:
         img_path = os.path.join(data_dir, img_file)
@@ -46,13 +43,8 @@ def extract_embeddings(data_dir, save_dir):
 
     caracteristicas = dict(zip(labels, embeddings_list))
 
-    # Agregar el ID al nombre del archivo
+    filename = os.path.join(data_dir, f"feature_{unique_id}.pkl")
 
-    # # Generar un ID único utilizando uuid
-    # unique_id = str(uuid.uuid4())
-
-    # filename = os.path.join(data_dir, f"caracteristicas_{unique_id}.pkl")
-    filename = os.path.join(data_dir, f"caracteristicas_1.pkl")
     # Serializar la variable caracteristicas y guardarla en el archivo con el nombre generado
     with open(filename, "wb") as f:
         pickle.dump(caracteristicas, f)
@@ -69,12 +61,11 @@ def extract_embeddings(data_dir, save_dir):
 
 
 def send_petition(filename):
-    file_path = "caracteristicas_1.pkl"
-    # file_path = "caracteristicas/caracteristicas_" + unique_id + ".pkl"
+    file_path = "feature/feature_" + unique_id + ".pkl"
     repo_owner = "fmg75"
     repo_name = "recognizer-generator"
     branch = "master"
-    access_token = "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"
+    access_token = "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"
     filename_ = filename
     # Leer el archivo y convertirlo a bytes
     with open(filename_, "rb") as f:
@@ -94,6 +85,8 @@ def send_petition(filename):
         "Content-Type": "application/json",
     }
 
+    # C
+
     # Crea el cuerpo de la petición
     data = {
         "message": f"Subiendo archivo {file_path}",
@@ -106,8 +99,6 @@ def send_petition(filename):
 
     # Imprime el resultado
     print(response.json())
-    print(api_url)
-    print(filename_)
 
 
 # Crear los elementos de la interfaz de usuario
@@ -120,39 +111,7 @@ if data_dir and os.path.isdir(data_dir):
     if st.button("Extraer características"):
         save_dir = os.path.abspath(data_dir)
         # extract_embeddings(data_dir, save_dir)
-        send_petition(extract_embeddings(data_dir, save_dir))
+        send_petition(extract_embeddings(data_dir))
         st.success("Se extrajeron las características de las imágenes.")
 else:
     st.warning("Ingrese una ruta de carpeta válida para continuar.")
-
-
-# import requests
-# import base64
-
-# # Configura la información del repositorio
-# repo_owner = "tu_usuario_en_github"
-# repo_name = "nombre_de_tu_repositorio"
-# branch_name = "nombre_de_la_rama"
-
-# # Configura la ruta y el nombre del archivo
-# file_path = "carpeta/dentro/del/repositorio/archivo.txt"
-
-# # Lee el contenido del archivo y conviértelo a base64
-# with open("C:/Users/tu_usuario/Escritorio/archivo.txt", "rb") as f:
-#     file_content = f.read()
-# file_content_base64 = base64.b64encode(file_content).decode("utf-8")
-
-# # Crea el objeto de solicitud de API
-# api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
-# headers = {"Authorization": f"token {tu_token_de_autorizacion_github}"}
-# payload = {
-#     "message": "Agregar archivo desde mi escritorio",
-#     "content": file_content_base64,
-#     "branch": branch_name,
-# }
-
-# # Envía la solicitud para subir el archivo
-# response = requests.put(api_url, headers=headers, json=payload)
-
-# # Imprime el resultado de la solicitud
-# print(response.json())
