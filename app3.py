@@ -69,12 +69,12 @@ def extract_embeddings(data_dir, save_dir):
 
 
 def send_petition(filename):
-    file_path = "caracteristicas/caracteristicas_1.pkl"
+    file_path = "caracteristicas_1.pkl"
     # file_path = "caracteristicas/caracteristicas_" + unique_id + ".pkl"
     repo_owner = "fmg75"
     repo_name = "recognizer-generator"
     branch = "master"
-    access_token = "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"
+    access_token = "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"
     filename_ = filename
     # Leer el archivo y convertirlo a bytes
     with open(filename_, "rb") as f:
