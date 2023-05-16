@@ -60,51 +60,77 @@ def extract_embeddings(data_dir):
     return filename
 
 
+# def send_petition(filename):
+#     file_path = "feature/feature_" + unique_id + ".pkl"
+#     repo_owner = "fmg75"
+#     repo_name = "recognizer-generator"
+#     branch = "master"
+#     access_token = "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"
+#     # personal_access_token = "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"
+#     filename_ = filename
+#     # Leer el archivo y convertirlo a bytes
+#     with open(filename_, "rb") as f:
+#         file_contents = f.read()
+
+#     # Codificar los bytes a base64
+#     file_contents_encoded = base64.b64encode(file_contents).decode()
+
+#     # Configura la URL de la API de GitHub
+#     api_url = (
+#         f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
+#     )
+
+#     # Configura los headers de la petición
+#     headers = {
+#         "Authorization": f"Bearer {access_token}",
+#         "Content-Type": "application/json",
+#     }
+
+#     # headers = {
+#     #     "Authorization": f"Bearer {personal_access_token}",
+#     #     "accept": "application/vnd.github+json",
+#     # }
+
+#     # C
+
+#     # Crea el cuerpo de la petición
+#     data = {
+#         "message": f"Subiendo archivo {file_path}",
+#         "content": file_contents_encoded,
+#         "branch": branch,
+#     }
+
+#     # Realiza la petición
+#     response = requests.put(api_url, headers=headers, json=data)
+
+#     # Imprime el resultado
+#     print(response.json())
+
+
+import ipfshttpclient
+
+
 def send_petition(filename):
     file_path = "feature/feature_" + unique_id + ".pkl"
-    repo_owner = "fmg75"
-    repo_name = "recognizer-generator"
-    branch = "master"
-    access_token = "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"
-    # personal_access_token = "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"
-    filename_ = filename
+
     # Leer el archivo y convertirlo a bytes
-    with open(filename_, "rb") as f:
+    with open(filename, "rb") as f:
         file_contents = f.read()
 
     # Codificar los bytes a base64
     file_contents_encoded = base64.b64encode(file_contents).decode()
 
-    # Configura la URL de la API de GitHub
-    api_url = (
-        f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
-    )
+    # Crear una conexión con el nodo de IPFS local
+    client = ipfshttpclient.connect()
 
-    # Configura los headers de la petición
-    headers = {
-        "Authorization": f"Bearer {access_token}",
-        "Content-Type": "application/json",
-    }
+    # Subir el archivo a IPFS
+    res = client.add_bytes(file_contents_encoded)
 
-    # headers = {
-    #     "Authorization": f"Bearer {personal_access_token}",
-    #     "accept": "application/vnd.github+json",
-    # }
+    # Obtener el CID del archivo subido a IPFS
+    cid = res["Hash"]
 
-    # C
-
-    # Crea el cuerpo de la petición
-    data = {
-        "message": f"Subiendo archivo {file_path}",
-        "content": file_contents_encoded,
-        "branch": branch,
-    }
-
-    # Realiza la petición
-    response = requests.put(api_url, headers=headers, json=data)
-
-    # Imprime el resultado
-    print(response.json())
+    # Imprimir el CID del archivo
+    print(f"Archivo subido a IPFS. CID: {cid}")
 
 
 # Crear los elementos de la interfaz de usuario
@@ -117,7 +143,7 @@ if data_dir and os.path.isdir(data_dir):
     if st.button("Extraer características"):
         save_dir = os.path.abspath(data_dir)
         # extract_embeddings(data_dir, save_dir)
-        send_petition(extract_embeddings(data_dir))
+        # send_petition(extract_embeddings(data_dir))
         st.success("Se extrajeron las características de las imágenes.")
 else:
     st.warning("Ingrese una ruta de carpeta válida para continuar.")
