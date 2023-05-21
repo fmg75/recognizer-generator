@@ -156,8 +156,8 @@ def run_feature_extraction(uploaded_files, data_dir):
 
             # Guardar el diccionario de características en un archivo
             filename = os.path.join(data_dir, f"feature_{unique_id}.pkl")
-            with open(filename, "wb") as f:
-                pickle.dump(caracteristicas, f)
+            # with open(filename, "wb") as f:
+            #     pickle.dump(caracteristicas, f)
             st.write(f"Diccionario de características guardado en {filename}")
         except Exception as e:
             st.error("Ocurrió un error al extraer las características.", e)
