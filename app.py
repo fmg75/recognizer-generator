@@ -73,7 +73,7 @@ class FaceNetModels:
         no_process_files = os.listdir(no_process_dir)
         if no_process_files:
             st.warning(
-                f"No se pudieron procesar {len(no_process_files)} imágenes. "
+                f"No se pudieron procesar {len(no_process_files)} imágenes "
                 f"Revise la carpeta '{no_process_dir}' para ver los archivos no procesados."
             )
         return self.caracteristicas
