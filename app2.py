@@ -163,7 +163,7 @@ def save_caracteristicas(caracteristicas, filename):
 #         st.warning("Ingrese una ruta de carpeta válida para continuar.")
 
 
-def run_feature_extraction(uploaded_files):
+def run_feature_extraction(uploaded_files, data_dir):
     _models = FaceNetModels()
     if st.button("Extraer características"):
         try:
@@ -172,9 +172,10 @@ def run_feature_extraction(uploaded_files):
             st.write(caracteristicas)
 
             # Guardar el diccionario de características en un archivo
-            filename = os.path.join(data_dir, f"feature_{unique_id}.pkl")
-            # save_caracteristicas(caracteristicas, filename)
-
+            filename = os.path.normpath(
+                os.path.join(data_dir, f"feature_{unique_id}.pkl")
+            )
+            save_caracteristicas(caracteristicas, filename)
             st.write(f"Diccionario de características guardado en {filename}")
         except Exception as e:
             st.error("Ocurrió un error al extraer las características.")
