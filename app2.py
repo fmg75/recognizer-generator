@@ -173,7 +173,8 @@ def run_feature_extraction(uploaded_files):
 
             # Guardar el diccionario de características en un archivo
             filename = os.path.join(data_dir, f"feature_{unique_id}.pkl")
-            save_caracteristicas(caracteristicas, filename)
+            # save_caracteristicas(caracteristicas, filename)
+
             st.write(f"Diccionario de características guardado en {filename}")
         except Exception as e:
             st.error("Ocurrió un error al extraer las características.")
