@@ -162,16 +162,27 @@ def upload_image():
             )
 
 
+# def run_feature_extraction():
+#     if data_dir and os.path.isdir(data_dir):
+#         _models = FaceNetModels()
+#         if st.button("Extraer características"):
+#             caracteristicas = _models.extract_embeddings(data_dir)
+#             st.write("Diccionario de características:")
+#             st.write(caracteristicas)
+
+#     else:
+#         st.warning("Ingrese una ruta de carpeta válida para continuar.")
+
+
 def run_feature_extraction():
-    if data_dir and os.path.isdir(data_dir):
-        _models = FaceNetModels()
-        if st.button("Extraer características"):
+    _models = FaceNetModels()
+    if st.button("Extraer características"):
+        try:
             caracteristicas = _models.extract_embeddings(data_dir)
             st.write("Diccionario de características:")
             st.write(caracteristicas)
-
-    else:
-        st.warning("Ingrese una ruta de carpeta válida para continuar.")
+        except Exception as e:
+            st.error("Ingrese una ruta valida: ")
 
 
 # Crear una barra lateral para seleccionar la página
