@@ -146,24 +146,7 @@ def upload_image():
             )
 
 
-def save_caracteristicas(caracteristicas, filename):
-    with open(filename, "wb") as f:
-        pickle.dump(caracteristicas, f)
-
-
-# def run_feature_extraction():
-#     if data_dir and os.path.isdir(data_dir):
-#         _models = FaceNetModels()
-#         if st.button("Extraer características"):
-#             caracteristicas = _models.extract_embeddings(data_dir)
-#             st.write("Diccionario de características:")
-#             st.write(caracteristicas)
-
-#     else:
-#         st.warning("Ingrese una ruta de carpeta válida para continuar.")
-
-
-def run_feature_extraction(uploaded_files):
+def run_feature_extraction(uploaded_files, data_dir):
     _models = FaceNetModels()
     if st.button("Extraer características"):
         try:
@@ -171,18 +154,13 @@ def run_feature_extraction(uploaded_files):
             st.write("Diccionario de características:")
             st.write(caracteristicas)
 
-            # Obtener la ruta absoluta del directorio actual
-            current_dir = os.path.abspath(os.getcwd())
-            # Crear un directorio temporal para guardar el archivo de características
-            temp_dir = os.path.join(current_dir, "temp")
-            os.makedirs(temp_dir, exist_ok=True)
-
-            # Construir el nombre del archivo utilizando el identificador único
-            filename = os.path.join(temp_dir, f"feature_{unique_id}.pkl")
-            save_caracteristicas(caracteristicas, filename)
+            # Guardar el diccionario de características en un archivo
+            filename = os.path.join(data_dir, f"feature_{unique_id}.pkl")
+            with open(filename, "wb") as f:
+                pickle.dump(caracteristicas, f)
             st.write(f"Diccionario de características guardado en {filename}")
         except Exception as e:
-            st.error("Ocurrió un error al extraer las características.")
+            st.error("Ocurrió un error al extraer las características.", e)
 
 
 # Crear una barra lateral para seleccionar la página
@@ -208,4 +186,4 @@ elif page == "Extracción de Características":
         "Subir imágenes", accept_multiple_files=True, type=["jpg", "jpeg", "png"]
     )
 
-    run_feature_extraction(uploaded_files)
+    run_feature_extraction(uploaded_files, data_dir)
