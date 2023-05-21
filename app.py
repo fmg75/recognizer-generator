@@ -9,7 +9,7 @@ import uuid
 
 # Generar un ID único utilizando uuid
 unique_id = str(uuid.uuid4())[:8]
-data_dir = st.sidebar.text_input("Ingrese ruta de carpeta de trabajo:")
+data_dir = st.text_input("Ingrese ruta de carpeta de trabajo:")
 
 
 class FaceNetModels:
