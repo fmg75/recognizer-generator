@@ -144,6 +144,7 @@ def upload_image():
                 + "Verifica si la ruta del diccionario de Caracteristicas es correcta "
                 + "O si el mismo a sido generado previamente"
             )
+            return data_dir == uploaded_file
 
 
 def run_feature_extraction(uploaded_files, data_dir):
