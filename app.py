@@ -176,17 +176,13 @@ def upload_image():
 
 def run_feature_extraction():
     _models = FaceNetModels()
-    # data_dir = st.text_input("Ingrese la ruta del directorio de datos:")
-    if data_dir:
-        if os.path.isdir(data_dir):
-            if st.button("Extraer características"):
-                caracteristicas = _models.extract_embeddings(data_dir)
-                st.write("Diccionario de características:")
-                st.write(caracteristicas)
-        else:
-            st.error("La ruta ingresada no es un directorio válido.")
-    else:
-        st.warning("Por favor, ingrese la ruta del directorio de datos.")
+    if st.button("Extraer características"):
+        try:
+            caracteristicas = _models.extract_embeddings(data_dir)
+            st.write("Diccionario de características:")
+            st.write(caracteristicas)
+        except Exception as e:
+            st.error("Error al validar la ruta: ")
 
 
 # Crear una barra lateral para seleccionar la página
