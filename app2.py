@@ -204,4 +204,4 @@ elif page == "Extracción de Características":
         "Subir imágenes", accept_multiple_files=True, type=["jpg", "jpeg", "png"]
     )
 
-    run_feature_extraction(uploaded_files)
+    run_feature_extraction(uploaded_files, data_dir)
