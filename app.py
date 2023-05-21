@@ -181,7 +181,7 @@ def run_feature_extraction():
             caracteristicas = _models.extract_embeddings(data_dir)
             st.write("Diccionario de características:")
             st.write(caracteristicas)
-        except:
+        except Exception as e:
             st.error("Error al validar la ruta: ")
 
 
