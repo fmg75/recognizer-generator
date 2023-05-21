@@ -146,9 +146,6 @@ def upload_image():
             )
 
 
-import os
-
-
 def run_feature_extraction(uploaded_files, data_dir):
     _models = FaceNetModels()
     if st.button("Extraer características"):
@@ -157,12 +154,13 @@ def run_feature_extraction(uploaded_files, data_dir):
             st.write("Diccionario de características:")
             st.write(caracteristicas)
 
+            # Generar el nombre de archivo
+            filename = os.path.join(data_dir, f"feature_{unique_id}.pkl")
+
             # Guardar el diccionario de características en un archivo
-            filename = os.path.join(data_dir, f"feature_{unique_id}.pkl").replace(
-                "/", "\\"
-            )
             with open(filename, "wb") as f:
                 pickle.dump(caracteristicas, f)
+
             st.write(f"Diccionario de características guardado en {filename}")
         except Exception as e:
             st.error("Ocurrió un error al extraer las características.", e)
