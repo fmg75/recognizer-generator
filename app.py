@@ -9,7 +9,7 @@ import uuid
 
 # Generar un ID único utilizando uuid
 unique_id = str(uuid.uuid4())[:8]
-data_dir = st.text_input("Ingrese ruta de carpeta de trabajo:")
+data_dir = st.sidebar.text_input("Ingrese ruta de carpeta de trabajo:")
 
 
 class FaceNetModels:
@@ -182,7 +182,7 @@ def run_feature_extraction():
             st.write("Diccionario de características:")
             st.write(caracteristicas)
         except Exception as e:
-            st.error("Error al validar la ruta: ")
+            st.error("Ingrese una ruta Valida: ")
 
 
 # Crear una barra lateral para seleccionar la página
