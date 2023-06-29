@@ -165,7 +165,10 @@ def run_feature_extraction(uploaded_files, data_dir):
 
             st.write(f"Diccionario de características guardado en {filename}")
         except Exception as e:
-            st.error("Ocurrió un error al extraer las características.", e)
+            # st.error("Ocurrió un error al extraer las características.", e)
+            st.error(
+                "Ocurrió un error al extraer las características. Detalles: " + str(e)
+            )
 
 
 # Crear una barra lateral para seleccionar la página
