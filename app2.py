@@ -11,7 +11,8 @@ import uuid
 unique_id = str(uuid.uuid4())[:8]
 data_dir = st.sidebar.text_input("Ingrese ruta de carpeta de trabajo:")
 # data_dir = "C:/Users/fmg/Downloads/Family"
-data_dir = data_dir.replace("\\", "/")
+
+# data_dir = data_dir.replace("\\", "/")
 
 
 class FaceNetModels:
@@ -159,6 +160,7 @@ def run_feature_extraction(uploaded_files, data_dir):
 
             # Generar el nombre de archivo
             filename = os.path.join(data_dir, f"feature_{unique_id}.pkl")
+            filename = filename.replace("\\", "/")
 
             # Guardar el diccionario de características en un archivo
             with open(filename, "wb") as f:
