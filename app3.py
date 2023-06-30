@@ -140,6 +140,7 @@ def upload_image():
         st.image(image, caption="Imagen subida ", width=200)
         # _models = FaceNetModels()
         result = process_image(uploaded_file, data_dir)
+        print(result)
         if result:
             label, distance = result
             st.write("La imagen cargada puede ser de:", label)
