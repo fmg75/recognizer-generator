@@ -161,7 +161,6 @@ def run_feature_extraction(uploaded_files, data_dir):
             # Generar el nombre de archivo
             # filename = os.path.join(data_dir, f"feature_{unique_id}.pkl")
             filename = os.path.join(data_dir, "feature_" + unique_id + ".pkl")
-            # filename = filename.replace("\\", "/")
 
             # Guardar el diccionario de características en un archivo
             with open(filename, "wb") as f:
@@ -172,6 +171,9 @@ def run_feature_extraction(uploaded_files, data_dir):
             # st.error("Ocurrió un error al extraer las características.", e)
             st.error("Ocurrió un error. Detalles: " + str(e))
             st.write(f"Diccionario de características guardado en {filename}")
+
+            current_dir = os.getcwd()
+            st.write(f"Directorio de trabajo actual: {current_dir}")
 
 
 # Crear una barra lateral para seleccionar la página
