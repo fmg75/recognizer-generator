@@ -6,7 +6,8 @@ import torch
 from facenet_pytorch import MTCNN, InceptionResnetV1
 import pickle
 import uuid
-
+import tempfile
+import shutil
 
 # Generar un ID único utilizando uuid
 unique_id = str(uuid.uuid4())[:8]
@@ -159,17 +160,21 @@ def run_feature_extraction(uploaded_files, data_dir):
             st.write("Diccionario de características:")
             st.write(caracteristicas)
 
-            # Generar el nombre de archivo
-            filename = os.path.join(data_dir, "feature_" + unique_id + ".pkl")
+            # Generar el nombre de archivo temporal
+            _, temp_filename = tempfile.mkstemp(suffix=".pkl")
 
-            # Guardar el diccionario de características en un archivo
-            with open(filename, "wb") as f:
+            # Guardar el diccionario de características en un archivo temporal
+            with open(temp_filename, "wb") as f:
                 pickle.dump(caracteristicas, f)
 
-            st.write(f"Diccionario de características guardado en {filename}")
+            st.write(f"Diccionario de características guardado en {temp_filename}")
+
+            # Copiar el archivo del directorio temporal al directorio de trabajo
+            filename = os.path.join(data_dir, f"feature_{unique_id}.pkl")
+            shutil.copy(temp_filename, filename)
+            st.write(f"Diccionario de características copiado a {filename}")
         except Exception as e:
-            # st.error("Ocurrió un error al extraer las características.", e)
-            st.error("Ocurrió un error. Detalles: " + str(e))
+            st.error("Ocurrió un error al extraer las características.", e)
 
 
 # Crear una barra lateral para seleccionar la página
