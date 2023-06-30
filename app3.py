@@ -162,25 +162,25 @@ def run_feature_extraction(uploaded_files, data_dir):
             st.write(caracteristicas)
 
             # Generar el nombre de archivo temporal
-            _, temp_filename = tempfile.mkstemp(suffix=".pkl")
+            # _, temp_filename = tempfile.mkstemp(suffix=".pkl")
 
-            # Guardar el diccionario de características en un archivo temporal
-            with open(temp_filename, "wb") as f:
-                pickle.dump(caracteristicas, f)
+            # # Guardar el diccionario de características en un archivo temporal
+            # with open(temp_filename, "wb") as f:
+            #     pickle.dump(caracteristicas, f)
 
             filename = data_dir + "/feature_" + unique_id + ".pkl"
             filename = filename.replace("/", "\\")
-            shutil.copy(temp_filename, filename)
+            # shutil.copy(temp_filename, filename)
             # Guardar el diccionario de características en un archivo
             # with open(filename, "wb") as f:
             #     pickle.dump(caracteristicas, f)
 
             # Botón de descarga
-            with open(filename, "rb") as file:
-                file_contents = file.read()
+            with open(filename, "wb") as f:
+                pickle.dump(caracteristicas, f)
                 st.download_button(
                     "Descargar Características",
-                    file_contents,
+                    filename,
                     "Haz clic aquí para descargar el archivo de características",
                 )
 
