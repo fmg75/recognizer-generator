@@ -167,7 +167,7 @@ def run_feature_extraction(uploaded_files, data_dir):
             with open(temp_filename, "wb") as f:
                 pickle.dump(caracteristicas, f)
 
-            # st.write(f"Diccionario de características guardado en {temp_filename}")
+            st.write(f"Diccionario de características guardado en {temp_filename}")
 
             # Copiar el archivo del directorio temporal al directorio de trabajo
             filename = os.path.join(data_dir, f"feature_{unique_id}.pkl")
