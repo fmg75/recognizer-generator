@@ -176,10 +176,13 @@ def run_feature_extraction(uploaded_files, data_dir):
             #     pickle.dump(caracteristicas, f)
 
             # Botón de descarga
-            st.download_button(
-                "Descargar Características",
-                filename,
-                "Haz clic aquí para descargar el archivo de características",
+            with open(filename, "rb") as file:
+                file_contents = file.read()
+                st.download_button(
+                    "Descargar Características",
+                    file_contents,
+                    "Haz clic aquí para descargar el archivo de características",
+                )
             )
 
             st.write(f"Diccionario de características guardado en {filename}")
