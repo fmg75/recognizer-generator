@@ -157,6 +157,8 @@ def run_feature_extraction(uploaded_files, data_dir):
             caracteristicas = _models.extract_embeddings(uploaded_files)
             st.write("Diccionario de características:")
             st.write(caracteristicas)
+            current_dir = os.getcwd()
+            st.write(f"Directorio de trabajo actual: {current_dir}")
 
             # Generar el nombre de archivo
             # filename = os.path.join(data_dir, f"feature_{unique_id}.pkl")
@@ -170,10 +172,6 @@ def run_feature_extraction(uploaded_files, data_dir):
         except Exception as e:
             # st.error("Ocurrió un error al extraer las características.", e)
             st.error("Ocurrió un error. Detalles: " + str(e))
-            st.write(f"Diccionario de características guardado en {filename}")
-
-            current_dir = os.getcwd()
-            st.write(f"Directorio de trabajo actual: {current_dir}")
 
 
 # Crear una barra lateral para seleccionar la página
