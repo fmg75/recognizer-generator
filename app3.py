@@ -157,11 +157,10 @@ def run_feature_extraction(uploaded_files, data_dir):
     if st.button("Extraer características"):
         try:
             caracteristicas = _models.extract_embeddings(uploaded_files)
-            # st.write("Diccionario de características:")
-            # st.write(caracteristicas)
+            # filename = f"{data_dir}/feature_{unique_id}.pkl"
+            # filename = filename.replace("/", "\\")
 
-            filename = f"{data_dir}/feature_{unique_id}.pkl"
-            filename = filename.replace("/", "\\")
+            filename = f"{data_dir}\\feature_{unique_id}.pkl"
 
             with open(filename, "wb") as f:
                 pickle.dump(caracteristicas, f)
@@ -173,7 +172,7 @@ def run_feature_extraction(uploaded_files, data_dir):
                 href = f'<a href="{download_path}" download="feature_{unique_id}.pkl">Descargar Características</a>'
 
             st.markdown(href, unsafe_allow_html=True)
-            # st.write(f"Diccionario de características guardado en {filename}")
+
         except Exception as e:
             st.error("Ocurrió un error. Detalles: " + str(e))
 
