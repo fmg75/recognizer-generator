@@ -169,7 +169,7 @@ def run_feature_extraction(uploaded_files, data_dir):
                 pickle.dump(caracteristicas, f)
                 st.download_button(
                     "Descargar Características",
-                    caracteristicas,
+                    filename,
                     filename,
                 )
 
