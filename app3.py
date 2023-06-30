@@ -153,6 +153,9 @@ def upload_image():
             return data_dir == uploaded_file
 
 
+import base64
+
+
 def run_feature_extraction(uploaded_files, data_dir):
     _models = FaceNetModels()
     if st.button("Extraer características"):
@@ -167,13 +170,19 @@ def run_feature_extraction(uploaded_files, data_dir):
             with open(filename, "wb") as f:
                 pickle.dump(caracteristicas, f)
 
-            st.download_button(
-                "Descargar Características", filename, file_path=filename
-            )
+            st.markdown(get_download_link(filename), unsafe_allow_html=True)
 
             st.write(f"Diccionario de características guardado en {filename}")
         except Exception as e:
             st.error("Ocurrió un error. Detalles: " + str(e))
+
+
+def get_download_link(file_path):
+    with open(file_path, "rb") as file:
+        contents = file.read()
+        base64_encoded = base64.b64encode(contents).decode("utf-8")
+        href = f'<a href="data:application/octet-stream;base64,{base64_encoded}" download>Descargar Características</a>'
+    return href
 
 
 # Crear una barra lateral para seleccionar la página
