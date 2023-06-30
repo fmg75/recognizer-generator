@@ -180,7 +180,9 @@ def run_feature_extraction(uploaded_files, data_dir):
             # shutil.copy(temp_filename, filename)
             # st.write(f"Diccionario de características copiado a {filename}")
             filename = data_dir + "/feature_" + unique_id + ".pkl"
-            st.write(f"Diccionario de características copiado a {filename}")
+            st.write(
+                f"Diccionario de características copiado a {osp.normpath(filename)}"
+            )
         except Exception as e:
             st.error("Ocurrió un error. Detalles: " + str(e))
 
