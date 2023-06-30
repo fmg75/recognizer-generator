@@ -161,17 +161,21 @@ def run_feature_extraction(uploaded_files, data_dir):
             st.write("Diccionario de características:")
             st.write(caracteristicas)
 
-            filename = f"{data_dir}/feature_{unique_id}.pkl"
-            filename = filename.replace("/", "\\")
+            # unique_id = "some_unique_id"  # Reemplaza esto con la lógica que generará el ID único
 
-            # Botón de descarga
+            filename = f"{data_dir}/feature_{unique_id}.pkl"
+            filename = os.path.abspath(filename)
+
+            # Guardar el archivo pickle
             with open(filename, "wb") as f:
                 pickle.dump(caracteristicas, f)
-                st.download_button(
-                    "Descargar Características",
-                    filename,
-                    "Haz clic aquí para descargar el archivo de características",
-                )
+
+            # Botón de descarga
+            st.download_button(
+                "Descargar Características",
+                filename,
+                "Haz clic aquí para descargar el archivo de características",
+            )
 
         # st.write(f"Diccionario de características guardado en {filename}")
         except Exception as e:
