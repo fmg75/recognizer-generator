@@ -65,7 +65,7 @@ class FaceNetModels:
         return self.caracteristicas
 
 
-def process_image(path):
+def process_image(path, data_dir):
     try:
         _models = FaceNetModels()
         # Obtener la lista de archivos .pkl en el directorio de características
