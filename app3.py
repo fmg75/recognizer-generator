@@ -172,7 +172,7 @@ def run_feature_extraction(uploaded_files, data_dir):
 
             st.markdown(get_download_link(filename), unsafe_allow_html=True)
 
-            st.write(f"Diccionario de características guardado en {filename}")
+            # st.write(f"Diccionario de características guardado en {filename}")
         except Exception as e:
             st.error("Ocurrió un error. Detalles: " + str(e))
 
@@ -181,7 +181,8 @@ def get_download_link(file_path):
     with open(file_path, "rb") as file:
         contents = file.read()
         base64_encoded = base64.b64encode(contents).decode("utf-8")
-        href = f'<a href="data:application/octet-stream;base64,{base64_encoded}" download>Descargar Características</a>'
+        file_name = os.path.basename(file_path)
+        href = f'<a href="data:application/octet-stream;base64,{base64_encoded}" download="{file_name}">Descargar Características</a>'
     return href
 
 
