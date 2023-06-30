@@ -170,7 +170,7 @@ def run_feature_extraction(uploaded_files, data_dir):
                 st.download_button(
                     "Descargar Características",
                     filename,
-                    filename,
+                    caracteristicas,
                 )
 
         # st.write(f"Diccionario de características guardado en {filename}")
