@@ -181,6 +181,9 @@ def run_feature_extraction(uploaded_files, data_dir):
             # st.write(f"Diccionario de características copiado a {filename}")
             filename = data_dir + "/feature_" + unique_id + ".pkl"
             filename = filename.replace("/", "\\")
+            # Guardar el diccionario de características en un archivo
+            with open(filename, "wb") as f:
+                pickle.dump(caracteristicas, f)
             st.write(f"Diccionario de características copiado a {filename}")
         except Exception as e:
             st.error("Ocurrió un error. Detalles: " + str(e))
