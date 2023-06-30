@@ -183,7 +183,6 @@ def run_feature_extraction(uploaded_files, data_dir):
                     file_contents,
                     "Haz clic aquí para descargar el archivo de características",
                 )
-            )
 
             st.write(f"Diccionario de características guardado en {filename}")
         except Exception as e:
