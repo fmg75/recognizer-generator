@@ -173,13 +173,12 @@ def run_feature_extraction(uploaded_files, data_dir):
             # Copiar el archivo del directorio temporal al directorio de trabajo
             # filename = os.path.join(data_dir, f"feature_{unique_id}.pkl")
             filename = os.path.join(data_dir, f"feature_{unique_id}.pkl")
-            filename = osp.normpath(filename)
+            # filename = osp.normpath(filename)
+            filename = os.sep(filename)
             # filename = os.path.join(data_dir, "feature_" + unique_id + ".pkl")
             # shutil.copy(temp_filename, filename.replace("/", "\\"))
             # shutil.copy(temp_filename, filename)
-            st.write(
-                f"Diccionario de características copiado a {osp.normpath(filename)}"
-            )
+            st.write(f"Diccionario de características copiado a {filename}")
         except Exception as e:
             st.error("Ocurrió un error. Detalles: " + str(e))
 
