@@ -129,6 +129,32 @@ def show_recognized_face(label, data_dir):
     st.write("No se encontró la imagen correspondiente al rostro reconocido.")
 
 
+# def upload_image():
+#     uploaded_file = st.file_uploader(
+#         "Subir la imagen de un Rostro",
+#         type=["jpg", "jpeg", "png"],
+#     )
+
+#     if uploaded_file is not None:
+#         image = Image.open(uploaded_file)
+#         st.image(image, caption="Imagen subida ", width=200)
+#         # _models = FaceNetModels()
+#         result = process_image(uploaded_file, data_dir)
+#         print(result)
+#         if result:
+#             label, distance = result
+#             st.write("La imagen cargada puede ser de:", label)
+#             st.write("Distancia Euclidiana: ", round(distance, 4))
+#             show_recognized_face(label, data_dir)
+#         else:
+#             st.write(
+#                 "Algo falló con la imagen proporcionada, intenta con otra!!"
+#                 + "Verifica si la ruta del diccionario de Caracteristicas es correcta "
+#                 + "O si el mismo a sido generado previamente"
+#             )
+#             return data_dir == uploaded_file
+
+
 def upload_image():
     uploaded_file = st.file_uploader(
         "Subir la imagen de un Rostro",
@@ -138,21 +164,19 @@ def upload_image():
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
         st.image(image, caption="Imagen subida ", width=200)
-        # _models = FaceNetModels()
-        result = process_image(uploaded_file, data_dir)
-        print(result)
+        pkl_path = st.text_input("Ingrese la ruta del archivo .pkl:")
+        result = process_image(uploaded_file, pkl_path)
         if result:
             label, distance = result
             st.write("La imagen cargada puede ser de:", label)
             st.write("Distancia Euclidiana: ", round(distance, 4))
-            show_recognized_face(label, data_dir)
+            show_recognized_face(label, pkl_path)
         else:
             st.write(
                 "Algo falló con la imagen proporcionada, intenta con otra!!"
                 + "Verifica si la ruta del diccionario de Caracteristicas es correcta "
-                + "O si el mismo a sido generado previamente"
+                + "O si el mismo ha sido generado previamente"
             )
-            return data_dir == uploaded_file
 
 
 def run_feature_extraction(uploaded_files, data_dir):
