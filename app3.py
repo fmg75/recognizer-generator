@@ -1,5 +1,5 @@
 import os
-import os.path as osp
+
 import io
 import streamlit as st
 from PIL import Image
@@ -12,9 +12,6 @@ import base64
 # Generar un ID único utilizando uuid
 unique_id = str(uuid.uuid4())[:8]
 data_dir = st.sidebar.text_input("Ingrese ruta de carpeta de trabajo:")
-# data_dir = "C:/Users/fmg/Downloads/Family"
-
-# data_dir = data_dir.replace("\\", "/")
 
 
 class FaceNetModels:
@@ -68,7 +65,7 @@ class FaceNetModels:
         return self.caracteristicas
 
 
-def process_image(path, data_dir):
+def process_image(path):
     try:
         _models = FaceNetModels()
         # Obtener la lista de archivos .pkl en el directorio de características
