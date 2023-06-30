@@ -174,7 +174,7 @@ def run_feature_extraction(uploaded_files, data_dir):
             # filename = os.path.join(data_dir, f"feature_{unique_id}.pkl")
             filename = os.path.join(data_dir, f"feature_{unique_id}.pkl")
             # filename = osp.normpath(filename)
-            filename = os.sep(filename)
+            # filename = os.sep(filename)
             # filename = os.path.join(data_dir, "feature_" + unique_id + ".pkl")
             # shutil.copy(temp_filename, filename.replace("/", "\\"))
             # shutil.copy(temp_filename, filename)
