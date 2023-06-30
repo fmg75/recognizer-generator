@@ -65,24 +65,65 @@ class FaceNetModels:
         return self.caracteristicas
 
 
+# def process_image(path):
+#     # def process_image(path, data_dir):
+#     try:
+#         _models = FaceNetModels()
+#         # Obtener la lista de archivos .pkl en el directorio de características
+#         file_list = [file for file in os.listdir(data_dir) if file.endswith(".pkl")]
+
+#         if len(file_list) == 0:
+#             st.write("No se encontraron archivos .pkl en el directorio de trabajo.")
+#             st.write("Genere el diccionario de caracteristicas!")
+#             return None
+
+#         # Cargar el primer archivo .pkl encontrado
+#         filename = os.path.join(data_dir, file_list[0])
+
+#         _models.load_caracteristicas(filename)
+
+#         st.write("Ruta del archivo de imagen:", path)
+
+#         img = Image.open(path)
+
+#         # Verificar si la imagen está en formato PNG y convertir a JPG si es necesario
+#         if img.format == "PNG":
+#             jpg_io = (
+#                 io.BytesIO()
+#             )  # Crear un objeto BytesIO para guardar la imagen en memoria
+#             img = img.convert(
+#                 "RGB"
+#             )  # Convertir a modo RGB (requerido para guardar como JPG)
+#             img.save(
+#                 jpg_io, format="JPEG"
+#             )  # Guardar la imagen en el objeto BytesIO en formato JPG
+#             jpg_io.seek(0)  # Colocar el puntero de lectura al inicio del objeto BytesIO
+#             img = Image.open(
+#                 jpg_io
+#             )  # Abrir la imagen en formato JPG desde el objeto BytesIO
+
+#         image_embedding = _models.embedding(_models.mtcnn(img))
+
+#         return _models.Distancia(image_embedding)
+
+#     except Exception as e:
+#         print("Error en process_image:", str(e))
+
+#         return None
+
+
 def process_image(path):
-    # def process_image(path, data_dir):
     try:
         _models = FaceNetModels()
-        # Obtener la lista de archivos .pkl en el directorio de características
-        file_list = [file for file in os.listdir(data_dir) if file.endswith(".pkl")]
+        # Obtener la ruta completa del archivo .pkl en el directorio de características
+        filename = os.path.join(data_dir, "archivo.pkl")
 
-        if len(file_list) == 0:
-            st.write("No se encontraron archivos .pkl en el directorio de trabajo.")
-            st.write("Genere el diccionario de caracteristicas!")
+        if not os.path.isfile(filename):
+            st.write("No se encontró el archivo .pkl en el directorio de trabajo.")
+            st.write("Genere el diccionario de características.")
             return None
 
-        # Cargar el primer archivo .pkl encontrado
-        filename = os.path.join(data_dir, file_list[0])
-
         _models.load_caracteristicas(filename)
-
-        st.write("Ruta del archivo de imagen:", path)
 
         img = Image.open(path)
 
@@ -108,7 +149,6 @@ def process_image(path):
 
     except Exception as e:
         print("Error en process_image:", str(e))
-
         return None
 
 
