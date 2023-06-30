@@ -84,6 +84,8 @@ def process_image(path, data_dir):
 
         _models.load_caracteristicas(filename)
 
+        st.write("Ruta del archivo de imagen:", path)
+
         img = Image.open(path)
 
         # Verificar si la imagen está en formato PNG y convertir a JPG si es necesario
