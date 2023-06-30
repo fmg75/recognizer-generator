@@ -161,11 +161,20 @@ def run_feature_extraction(uploaded_files, data_dir):
             st.write("Diccionario de características:")
             st.write(caracteristicas)
 
+            # Generar el nombre de archivo temporal
+            _, temp_filename = tempfile.mkstemp(suffix=".pkl")
+
+            # Guardar el diccionario de características en un archivo temporal
+            with open(temp_filename, "wb") as f:
+                pickle.dump(caracteristicas, f)
+
             filename = data_dir + "/feature_" + unique_id + ".pkl"
             filename = filename.replace("/", "\\")
+            shutil.copy(temp_filename, filename)
             # Guardar el diccionario de características en un archivo
-            with open(filename, "wb") as f:
-                pickle.dump(caracteristicas, f)
+            # with open(filename, "wb") as f:
+            #     pickle.dump(caracteristicas, f)
+
             st.write(f"Diccionario de características guardado en {filename}")
         except Exception as e:
             st.error("Ocurrió un error. Detalles: " + str(e))
