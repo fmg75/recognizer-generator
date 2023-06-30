@@ -65,7 +65,8 @@ class FaceNetModels:
         return self.caracteristicas
 
 
-def process_image(path, data_dir):
+def process_image(path):
+    # def process_image(path, data_dir):
     try:
         _models = FaceNetModels()
         # Obtener la lista de archivos .pkl en el directorio de características
@@ -136,7 +137,8 @@ def upload_image():
         image = Image.open(uploaded_file)
         st.image(image, caption="Imagen subida ", width=200)
         # _models = FaceNetModels()
-        result = process_image(uploaded_file, data_dir)
+        # result = process_image(uploaded_file, data_dir)
+        result = process_image(uploaded_file)
         print(result)
         if result:
             label, distance = result
