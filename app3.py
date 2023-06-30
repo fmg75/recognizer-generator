@@ -161,7 +161,7 @@ def run_feature_extraction(uploaded_files, data_dir):
             st.write("Diccionario de características:")
             st.write(caracteristicas)
 
-            filename = data_dir + "feature_" + unique_id + ".pkl"
+            filename = data_dir + "/feature_" + unique_id + ".pkl"
             filename = filename.replace("/", "\\")
             # Guardar el diccionario de características en un archivo
             with open(filename, "wb") as f:
