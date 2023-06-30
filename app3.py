@@ -175,6 +175,13 @@ def run_feature_extraction(uploaded_files, data_dir):
             # with open(filename, "wb") as f:
             #     pickle.dump(caracteristicas, f)
 
+            # Botón de descarga
+            st.download_button(
+                "Descargar Características",
+                filename,
+                "Haz clic aquí para descargar el archivo de características",
+            )
+
             st.write(f"Diccionario de características guardado en {filename}")
         except Exception as e:
             st.error("Ocurrió un error. Detalles: " + str(e))
