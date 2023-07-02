@@ -129,7 +129,11 @@ def upload_and_process_image(uploaded_file, pkl_file):
 
 
 def show_recognized_face(label, data_dir):
-    img_files = os.listdir(data_dir)
+    # img_files = os.listdir(data_dir)
+
+    current_dir = os.getcwd()
+    full_path = os.path.join(current_dir, data_dir)
+    img_files = os.listdir(full_path)
 
     for img_file in img_files:
         img_path = os.path.join(data_dir, img_file)
