@@ -119,7 +119,7 @@ def upload_and_process_image(uploaded_file, pkl_file):
             # show_recognized_face(label, data_dir)
 
             img_files = os.listdir(data_dir)
-            st.write(img_files)
+            st.write(str(img_files))
 
             for img_file in img_files:
                 img_path = os.path.join(data_dir, img_file)
