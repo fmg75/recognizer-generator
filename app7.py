@@ -114,9 +114,9 @@ def upload_and_process_image(uploaded_file, pkl_file):
             st.image(img, width=200)
             st.write("La imagen cargada puede ser de:", label)
             st.write("Distancia Euclidiana: ", round(distance, 4))
-            # show_recognized_face(label, pkl_file_path)
+            print(str(data_dir))
             show_recognized_face(label, data_dir)
-            # show_recognized_face(label, uploaded_file.name)
+
         else:
             st.write(
                 "Algo falló con la imagen proporcionada. Verifica si la ruta del diccionario de Caracteristicas es correcta "
