@@ -7,6 +7,7 @@ from facenet_pytorch import MTCNN, InceptionResnetV1
 import pickle
 import uuid
 import base64
+import tempfile
 
 # Generar un ID único utilizando uuid
 unique_id = str(uuid.uuid4())[:8]
@@ -85,9 +86,6 @@ def run_feature_extraction(uploaded_files):
             st.error("Ocurrió un error. Detalles: " + str(e))
 
 
-import tempfile
-
-
 def upload_and_process_image(uploaded_file, pkl_file):
     try:
         _models = FaceNetModels()
@@ -113,6 +111,7 @@ def upload_and_process_image(uploaded_file, pkl_file):
         result = _models.Distancia(image_embedding)
         if result:
             label, distance = result
+            st.image(img, width=200)
             st.write("La imagen cargada puede ser de:", label)
             st.write("Distancia Euclidiana: ", round(distance, 4))
             # show_recognized_face(label, pkl_file_path)
@@ -131,6 +130,7 @@ def upload_and_process_image(uploaded_file, pkl_file):
 
 def show_recognized_face(label, data_dir):
     img_files = os.listdir(data_dir)
+
     for img_file in img_files:
         img_path = os.path.join(data_dir, img_file)
         img_label = os.path.splitext(img_file)[0]
