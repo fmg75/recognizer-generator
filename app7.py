@@ -85,8 +85,6 @@ def run_feature_extraction(uploaded_files):
         except Exception as e:
             st.error("Ocurrió un error. Detalles: " + str(e))
 
-    return dir == uploaded_files
-
 
 def upload_and_process_image(uploaded_file, pkl_file):
     try:
@@ -117,7 +115,6 @@ def upload_and_process_image(uploaded_file, pkl_file):
             st.write("La imagen cargada puede ser de:", label)
             st.write("Distancia Euclidiana: ", round(distance, 4))
 
-            st.write("fffffff", dir)
             # show_recognized_face(label, uploaded_files)
 
             # img_files = os.listdir(data_dir)
