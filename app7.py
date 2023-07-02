@@ -118,20 +118,20 @@ def upload_and_process_image(uploaded_file, pkl_file):
             # st.write(str(data_dir))
             # show_recognized_face(label, data_dir)
 
-            img_files = os.listdir(data_dir)
-            st.write(str(img_files))
+            # img_files = os.listdir(data_dir)
+            # st.write(str(img_files))
 
-            for img_file in img_files:
-                img_path = os.path.join(data_dir, img_file)
-                img_label = os.path.splitext(img_file)[0]
-                if (
-                    img_label == label
-                ):  # Comparación de etiquetas sin distinción de mayúsculas y minúsculas
-                    image = Image.open(img_path)
-                    st.image(image, caption="Imagen del rostro reconocido", width=200)
-                # return
+            # for img_file in img_files:
+            #     img_path = os.path.join(data_dir, img_file)
+            #     img_label = os.path.splitext(img_file)[0]
+            #     if (
+            #         img_label == label
+            #     ):  # Comparación de etiquetas sin distinción de mayúsculas y minúsculas
+            #         image = Image.open(img_path)
+            #         st.image(image, caption="Imagen del rostro reconocido", width=200)
+            #     # return
 
-            st.write("No se encontró la imagen correspondiente al rostro reconocido.")
+            # st.write("No se encontró la imagen correspondiente al rostro reconocido.")
 
         else:
             st.write(
@@ -180,7 +180,7 @@ with expander:
     )
 
 
-data_dir = st.sidebar.text_input("Directorio de trabajo")
+# data_dir = st.sidebar.text_input("Directorio de trabajo")
 
 # st.sidebar.title("Opciones")
 option = st.sidebar.selectbox(
