@@ -85,6 +85,8 @@ def run_feature_extraction(uploaded_files):
         except Exception as e:
             st.error("Ocurrió un error. Detalles: " + str(e))
 
+        return uploaded_files
+
 
 def upload_and_process_image(uploaded_file, pkl_file):
     try:
