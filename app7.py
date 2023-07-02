@@ -115,7 +115,7 @@ def upload_and_process_image(uploaded_file, pkl_file):
             st.write("La imagen cargada puede ser de:", label)
             st.write("Distancia Euclidiana: ", round(distance, 4))
 
-            # show_recognized_face(label, uploaded_files)
+            show_recognized_face(label, dir_img)
 
             # img_files = os.listdir(data_dir)
             # st.write(str(img_files))
