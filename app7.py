@@ -150,8 +150,23 @@ def show_recognized_face(label, data_dir):
 
 # Interface lateral
 
+expander = st.expander("Información de la App")
+with expander:
+    st.write("Esta es una aplicación de reconocimiento facial.")
+    st.write(
+        "Permite extraer características faciales, guardarlas en un archivo y luego reconocer rostros en imágenes cargadas."
+    )
+    st.write(
+        "Para generar características faciales, selecciona la opción 'Generar características' en el menú lateral y especifica el directorio de trabajo."
+    )
+    st.write(
+        "Una vez generadas las características, puedes cargar un archivo .pkl y una imagen para realizar el reconocimiento facial."
+    )
+
+
 data_dir = st.sidebar.text_input("Directorio de trabajo")
-st.sidebar.title("Opciones")
+
+# st.sidebar.title("Opciones")
 option = st.sidebar.selectbox(
     "Seleccione una opción:",
     ("Generar características", "Cargar diccionario y reconocer"),
