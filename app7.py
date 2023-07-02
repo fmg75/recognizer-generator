@@ -125,7 +125,7 @@ def upload_and_process_image(uploaded_file, pkl_file):
                 img_path = os.path.join(data_dir, img_file)
                 img_label = os.path.splitext(img_file)[0]
                 if (
-                    img_label.lower() == label.lower()
+                    img_label == label
                 ):  # Comparación de etiquetas sin distinción de mayúsculas y minúsculas
                     image = Image.open(img_path)
                     st.image(image, caption="Imagen del rostro reconocido", width=200)
