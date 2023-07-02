@@ -115,7 +115,7 @@ def upload_and_process_image(uploaded_file, pkl_file):
             st.write("La imagen cargada puede ser de:", label)
             st.write("Distancia Euclidiana: ", round(distance, 4))
 
-            # st.write(str(data_dir))
+            st.write(str(uploaded_files))
             show_recognized_face(label, uploaded_files)
 
             # img_files = os.listdir(data_dir)
@@ -144,15 +144,15 @@ def upload_and_process_image(uploaded_file, pkl_file):
         return None
 
 
-def show_recognized_face(label, data_dir):
-    img_files = os.listdir(data_dir)
-    st.write(str(data_dir))
+def show_recognized_face(label, dir):
+    img_files = os.listdir(dir)
+    st.write(str(dir))
     current_dir = os.getcwd()
-    full_path = os.path.join(current_dir, data_dir)
+    full_path = os.path.join(current_dir, dir)
     img_files = os.listdir(full_path)
 
     for img_file in img_files:
-        img_path = os.path.join(data_dir, img_file)
+        img_path = os.path.join(dir, img_file)
         img_label = os.path.splitext(img_file)[0]
         if (
             img_label.lower() == label.lower()
