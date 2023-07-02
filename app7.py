@@ -154,13 +154,13 @@ expander = st.expander("Información de la App")
 with expander:
     st.write("Esta es una aplicación de reconocimiento facial.")
     st.write(
-        "Permite extraer características faciales, guardarlas en un archivo y luego reconocer rostros en imágenes cargadas."
+        "Permite extraer características faciales, guardarlas en un archivo (diccionario con extencion .pkl) y luego reconocer el rostro en una imagen."
     )
     st.write(
-        "Para generar características faciales, selecciona la opción 'Generar características' en el menú lateral y especifica el directorio de trabajo."
+        "Para generar características faciales, selecciona la opción 'Generar características' en el menú lateral y especifica el directorio de trabajo donde se alojan las imagenes."
     )
     st.write(
-        "Una vez generadas las características, puedes cargar un archivo .pkl y una imagen para realizar el reconocimiento facial."
+        "Una vez generadas las características, puedes cargar el diccionario .pkl y una imagen para realizar el reconocimiento facial."
     )
 
 
