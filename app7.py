@@ -179,7 +179,7 @@ with expander:
     )
 
 
-# data_dir = st.sidebar.text_input("Directorio de trabajo")
+dir_img = st.sidebar.text_input("Directorio de imagenes")
 
 # st.sidebar.title("Opciones")
 option = st.sidebar.selectbox(
